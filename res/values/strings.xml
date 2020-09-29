@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="bottom_menu_me">记录评价</string>
+    <string name="bottom_menu_discovery">咨询专家</string>
+    <string name="bottom_menu_addressbook">信息更新</string>
+    <string name="bottom_menu_wechat">查询流程</string>
+    <string name="app_name">故障处理查询系统</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="chaxun">查询</string>
+    <string name="biaoti">电力分公司故障处理查询系统</string>
+    <string name="title_activity_demo">DemoActivity</string>
+    <string name="sss" />
+    <string name="title_activity_liucheng">LiuchengActivity</string>
+    <string name="title_activity_case">CaseActivity</string>
+    <string name="sw">浏览全文</string>
+    <string name="chaliucheng">查询流程</string>
+    <string name="chaff">查询方法</string>
+    <string name="chacase">查询案例</string>
+    <string name="guanjianzi">关键字：</string>
+
+</resources>
