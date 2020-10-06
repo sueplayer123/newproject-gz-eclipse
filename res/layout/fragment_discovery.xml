@@ -3,12 +3,10 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent" >
 
-    <TextView
+    <ListView
+        android:id="@+id/list_view"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:textSize="32sp"
-		android:gravity="center"
-		android:background="#00ff00"
-        android:text="@string/bottom_menu_discovery" />
+        android:layout_height="match_parent" >
+    </ListView>
 
 </RelativeLayout>

@@ -36,33 +36,41 @@ public final class R {
         public static final int logo=0x7f02000e;
     }
     public static final class id {
-        public static final int button1=0x7f090014;
-        public static final int button2=0x7f090015;
-        public static final int button3=0x7f090016;
-        public static final int button4=0x7f090017;
-        public static final int editText1=0x7f090018;
-        public static final int imageView1=0x7f090010;
+        public static final int button1=0x7f09000e;
+        public static final int button2=0x7f09001b;
+        public static final int button3=0x7f09001c;
+        public static final int button4=0x7f09001d;
+        public static final int desc=0x7f090023;
+        public static final int edit1=0x7f090011;
+        public static final int edit2=0x7f090012;
+        public static final int editText1=0x7f090010;
+        public static final int imageView1=0x7f090017;
         public static final int imgv_bottomMenu_addressbook=0x7f090006;
         public static final int imgv_bottomMenu_chat=0x7f090003;
         public static final int imgv_bottomMenu_discovery=0x7f090009;
         public static final int imgv_bottomMenu_me=0x7f09000c;
-        public static final int linearLayout1=0x7f090012;
+        public static final int linearLayout1=0x7f090019;
+        public static final int list_view=0x7f090021;
         public static final int ll_bottomMenu_addressBook=0x7f090005;
         public static final int ll_bottomMenu_chat=0x7f090002;
         public static final int ll_bottomMenu_discovery=0x7f090008;
         public static final int ll_bottomMenu_me=0x7f09000b;
-        public static final int tabhost=0x7f09000e;
+        public static final int name=0x7f090022;
+        public static final int ratingBar1=0x7f09000f;
+        public static final int save=0x7f090013;
+        public static final int show=0x7f090014;
+        public static final int tabhost=0x7f090015;
         public static final int textView1=0x7f090000;
-        public static final int textView2=0x7f090011;
-        public static final int textView3=0x7f090013;
+        public static final int textView2=0x7f090018;
+        public static final int textView3=0x7f09001a;
         public static final int tv_bottomMenu_addressbook=0x7f090007;
         public static final int tv_bottomMenu_chat=0x7f090004;
         public static final int tv_bottomMenu_discovery=0x7f09000a;
         public static final int tv_bottomMenu_me=0x7f09000d;
-        public static final int view1=0x7f09000f;
-        public static final int view2=0x7f090019;
-        public static final int view3=0x7f09001a;
-        public static final int view4=0x7f09001b;
+        public static final int view1=0x7f090016;
+        public static final int view2=0x7f09001e;
+        public static final int view3=0x7f09001f;
+        public static final int view4=0x7f090020;
         public static final int vp_main_menuContent=0x7f090001;
     }
     public static final class layout {
@@ -70,14 +78,18 @@ public final class R {
         public static final int activity_demo=0x7f030001;
         public static final int activity_liucheng=0x7f030002;
         public static final int activity_main=0x7f030003;
-        public static final int fragment_addressbook=0x7f030004;
-        public static final int fragment_chat=0x7f030005;
-        public static final int fragment_discovery=0x7f030006;
-        public static final int fragment_me=0x7f030007;
+        public static final int activity_rating=0x7f030004;
+        public static final int fragment_addressbook=0x7f030005;
+        public static final int fragment_chat=0x7f030006;
+        public static final int fragment_discovery=0x7f030007;
+        public static final int fragment_me=0x7f030008;
+        public static final int simple_item=0x7f030009;
+        public static final int zhangsan=0x7f03000a;
     }
     public static final class raw {
         public static final int sue=0x7f040000;
         public static final int testsu=0x7f040001;
+        public static final int testsu2=0x7f040002;
     }
     public static final class string {
         public static final int app_name=0x7f070004;
@@ -86,17 +98,19 @@ public final class R {
         public static final int bottom_menu_discovery=0x7f070001;
         public static final int bottom_menu_me=0x7f070000;
         public static final int bottom_menu_wechat=0x7f070003;
-        public static final int chacase=0x7f07000f;
-        public static final int chaff=0x7f07000e;
-        public static final int chaliucheng=0x7f07000d;
+        public static final int chacase=0x7f070010;
+        public static final int chaff=0x7f07000f;
+        public static final int chaliucheng=0x7f07000e;
         public static final int chaxun=0x7f070006;
-        public static final int guanjianzi=0x7f070010;
+        public static final int guanjianzi=0x7f070011;
         public static final int hello_world=0x7f070005;
         public static final int sss=0x7f070009;
-        public static final int sw=0x7f07000c;
+        public static final int sw=0x7f07000d;
         public static final int title_activity_case=0x7f07000b;
         public static final int title_activity_demo=0x7f070008;
         public static final int title_activity_liucheng=0x7f07000a;
+        public static final int title_activity_rating=0x7f070012;
+        public static final int title_activity_zhuanjia=0x7f07000c;
     }
     public static final class style {
         /** 

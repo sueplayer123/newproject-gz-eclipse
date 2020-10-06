@@ -13,10 +13,12 @@
     <string name="sss" />
     <string name="title_activity_liucheng">LiuchengActivity</string>
     <string name="title_activity_case">CaseActivity</string>
+    <string name="title_activity_zhuanjia">zhuanjia</string>
     <string name="sw">浏览全文</string>
     <string name="chaliucheng">查询流程</string>
     <string name="chaff">查询方法</string>
     <string name="chacase">查询案例</string>
     <string name="guanjianzi">关键字：</string>
+    <string name="title_activity_rating">RatingActivity</string>
 
 </resources>
