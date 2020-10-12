@@ -13,27 +13,29 @@ import com.example.bottommenu_vp_imgv_tv.R;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.text.method.ScrollingMovementMethod;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TabHost;
-import android.widget.TextView;
 
 public class ChatFragment extends Fragment {
-	private TextView textView2;
+	// private TextView textView2;
 	private Button button1;
 	private Button button2;
 	private Button button3;
 	private Button button4;
 	private EditText editText1;
-	SQLiteDatabase database;
+	private WebView webView1;
+	public static SQLiteDatabase database;
 	private static String stString1;
 	private static String stString2;
 	private static String stString3;
@@ -57,21 +59,26 @@ public class ChatFragment extends Fragment {
 				.setIndicator("咨询专家", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view3));
 		tabHost.addTab(tabHost.newTabSpec("tab4")
 				.setIndicator("记录评价", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view4));
-		textView2 = (TextView) getActivity().findViewById(R.id.textView2);
+		// textView2 = (TextView) getActivity().findViewById(R.id.textView2);
 		button1 = (Button) getActivity().findViewById(R.id.button1);
 		button2 = (Button) getActivity().findViewById(R.id.button2);
 		button3 = (Button) getActivity().findViewById(R.id.button3);
 		button4 = (Button) getActivity().findViewById(R.id.button4);
 		editText1 = (EditText) getActivity().findViewById(R.id.editText1);
+		webView1 = (WebView) getActivity().findViewById(R.id.webView1);
 		database = openDatabase();
 		button1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				InputStream inputStream = getResources().openRawResource(R.raw.sue);
-				String string = getString(inputStream);
-				textView2.setText(string);
-				textView2.setMovementMethod(new ScrollingMovementMethod());
 
+				/*
+				 * InputStream inputStream = getResources().openRawResource(R.raw.sue); String
+				 * string = getString(inputStream);
+				 * 
+				 * textView2.setText(string); textView2.setMovementMethod(new
+				 * ScrollingMovementMethod());
+				 */
+				readHtmlFormAssets();
 			}
 		});
 		button2.setOnClickListener(new OnClickListener() {
@@ -185,5 +192,14 @@ public class ChatFragment extends Fragment {
 			e.printStackTrace();
 		}
 		return sb.toString();
+	}
+
+	private void readHtmlFormAssets() {
+		WebSettings webSettings = webView1.getSettings();
+		webSettings.setLoadWithOverviewMode(true);
+		webSettings.setUseWideViewPort(true);
+		webView1.getSettings().setTextZoom(180);
+		webView1.setBackgroundColor(Color.TRANSPARENT);
+		webView1.loadUrl("file:///android_asset/html/all.html");
 	}
 }

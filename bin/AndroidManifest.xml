@@ -5,8 +5,8 @@
     android:versionName="1.0" >
 
     <uses-sdk
-        android:minSdkVersion="20"
-        android:targetSdkVersion="20" />
+        android:minSdkVersion="15"
+        android:targetSdkVersion="30" />
 
     <application
         android:allowBackup="true"
@@ -59,10 +59,28 @@
             </intent-filter>
         </activity>
         <activity
-            android:name=".RatingActivity"
-            android:label="@string/title_activity_rating" >
+            android:name=".PingjiaActivity"
+            android:label="@string/title_activity_pingjia" >
             <intent-filter>
-                <action android:name="com.example.bottommenu_vp_imgv_tv.RatingActivity" />
+                <action android:name="com.example.bottommenu_vp_imgv_tv.PingjiaActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".PjhzActivity"
+            android:label="@string/title_activity_pjhz" >
+            <intent-filter>
+                <action android:name="com.example.bottommenu_vp_imgv_tv.PjhzActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Zhuanjia1Activity"
+            android:label="@string/title_activity_zhuanjia1" >
+            <intent-filter>
+                <action android:name="com.example.bottommenu_vp_imgv_tv.Zhuanjia1Activity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>

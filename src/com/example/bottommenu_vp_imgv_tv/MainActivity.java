@@ -1,11 +1,13 @@
 package com.example.bottommenu_vp_imgv_tv;
 
 import java.util.ArrayList;
+
 import com.example.bottommenu_vp_imgv_tv.fragment.AddressBookFragment;
 import com.example.bottommenu_vp_imgv_tv.fragment.ChatFragment;
 import com.example.bottommenu_vp_imgv_tv.fragment.DiscoveryFragment;
 import com.example.bottommenu_vp_imgv_tv.fragment.FragmentAdapter;
 import com.example.bottommenu_vp_imgv_tv.fragment.MeFragment;
+
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -16,8 +18,7 @@ import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class MainActivity extends FragmentActivity implements OnClickListener,
-		OnPageChangeListener {
+public class MainActivity extends FragmentActivity implements OnClickListener, OnPageChangeListener {
 	private ArrayList<TextView> tv_menus;
 	private ArrayList<ImageView> imgv_menus;
 	private ViewPager mViewPager;
@@ -44,10 +45,8 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 		tv_menus.add((TextView) findViewById(R.id.tv_bottomMenu_me));
 		imgv_menus = new ArrayList<ImageView>();
 		imgv_menus.add((ImageView) findViewById(R.id.imgv_bottomMenu_chat));
-		imgv_menus
-				.add((ImageView) findViewById(R.id.imgv_bottomMenu_addressbook));
-		imgv_menus
-				.add((ImageView) findViewById(R.id.imgv_bottomMenu_discovery));
+		imgv_menus.add((ImageView) findViewById(R.id.imgv_bottomMenu_addressbook));
+		imgv_menus.add((ImageView) findViewById(R.id.imgv_bottomMenu_discovery));
 		imgv_menus.add((ImageView) findViewById(R.id.imgv_bottomMenu_me));
 		mViewPager = (ViewPager) findViewById(R.id.vp_main_menuContent);
 	}
@@ -59,8 +58,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener,
 		mFragments.add(new AddressBookFragment());
 		mFragments.add(new DiscoveryFragment());
 		mFragments.add(new MeFragment());
-		mMainMenuAdapter = new FragmentAdapter(getSupportFragmentManager(),
-				mFragments);
+		mMainMenuAdapter = new FragmentAdapter(getSupportFragmentManager(), mFragments);
 		setMenuSelector(0); // 默认选中第一个菜单项“微信”
 	}
 

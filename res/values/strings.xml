@@ -20,5 +20,8 @@
     <string name="chacase">查询案例</string>
     <string name="guanjianzi">关键字：</string>
     <string name="title_activity_rating">RatingActivity</string>
+    <string name="title_activity_pingjia">PingjiaActivity</string>
+    <string name="title_activity_pjhz">PjhzActivity</string>
+    <string name="title_activity_zhuanjia1">Zhuanjia1Activity</string>
 
 </resources>

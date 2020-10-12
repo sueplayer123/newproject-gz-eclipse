@@ -5,8 +5,9 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.example.bottommenu_vp_imgv_tv.PingjiaActivity;
 import com.example.bottommenu_vp_imgv_tv.R;
-import com.example.bottommenu_vp_imgv_tv.RatingActivity;
+import com.example.bottommenu_vp_imgv_tv.Zhuanjia1Activity;
 import com.example.bottommenu_vp_imgv_tv.zhuanjia;
 
 import android.content.Intent;
@@ -60,7 +61,10 @@ public class DiscoveryFragment extends Fragment {
 					Intent intent = new Intent(getActivity(), zhuanjia.class);
 					startActivity(intent);
 					break;
-
+				case 1:
+					Intent intent1 = new Intent(getActivity(), Zhuanjia1Activity.class);
+					startActivity(intent1);
+					break;
 				default:
 					break;
 				}
@@ -70,13 +74,18 @@ public class DiscoveryFragment extends Fragment {
 
 			@Override
 			public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+
 				switch (position) {
 				case 0:
-					Intent intent = new Intent(getActivity(), RatingActivity.class);
-					intent.putExtra("name1", names[0]);
+					Intent intent = new Intent(getActivity(), PingjiaActivity.class);
+					intent.putExtra("namestring", names[0]);
 					startActivity(intent);
 					break;
-
+				case 1:
+					Intent intent1 = new Intent(getActivity(), PingjiaActivity.class);
+					intent1.putExtra("namestring", names[1]);
+					startActivity(intent1);
+					break;
 				default:
 					break;
 				}
