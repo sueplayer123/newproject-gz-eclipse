@@ -200,6 +200,6 @@ public class ChatFragment extends Fragment {
 		webSettings.setUseWideViewPort(true);
 		webView1.getSettings().setTextZoom(180);
 		webView1.setBackgroundColor(Color.TRANSPARENT);
-		webView1.loadUrl("file:///android_asset/html/all.html");
+		webView1.loadUrl("file:///android_asset/html/all2.html");
 	}
 }
