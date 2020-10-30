@@ -49,17 +49,6 @@
                     android:contentDescription="@drawable/logo"
                     android:src="@drawable/logo" />
 
-                <!-- <TextView
-                    android:id="@+id/textView2"
-                    android:layout_width="match_parent"
-                    android:layout_height="300dp"
-                    android:layout_alignParentBottom="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_below="@+id/linearLayout1"
-                    android:maxLines="30"
-                    android:scrollbars="vertical" /> -->
-
                 <LinearLayout
                     android:id="@+id/linearLayout1"
                     android:layout_width="wrap_content"
@@ -123,29 +112,57 @@
                     <requestFocus />
                 </EditText>
 
-               <WebView
-                   android:id="@+id/webView1"
-                   android:layout_width="match_parent"
-                   android:layout_height="match_parent"
-                   android:layout_alignParentBottom="true"
-                   android:layout_below="@+id/linearLayout1"
-                   android:layout_centerHorizontal="true" />
-
+                <WebView
+                    android:id="@+id/webView1"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_alignParentBottom="true"
+                    android:layout_below="@+id/linearLayout1"
+                    android:layout_centerHorizontal="true" />
             </RelativeLayout>
 
-            <TextView
+            <RelativeLayout
                 android:id="@+id/view2"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="这是第二个选项卡"
-                android:textSize="20sp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
 
-            <TextView
+                <ImageView
+                    android:id="@+id/imgv1"
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true" />
+
+                <Button
+                    android:id="@+id/btn6"
+                    android:layout_width="match_parent"
+                    android:layout_height="56dp"
+                    android:layout_alignParentBottom="true"
+                    android:gravity="center"
+                    android:padding="16dp"
+                    android:text="对故障点拍照"
+                    android:textColor="#FF212121"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+            </RelativeLayout>
+
+            <LinearLayout
                 android:id="@+id/view3"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="这是第三个选项卡"
-                android:textSize="20sp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <Button
+                    android:id="@+id/main_btn"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="微信登录" />
+
+                <TextView
+                    android:id="@+id/main_tv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </LinearLayout>
 
             <TextView
                 android:id="@+id/view4"

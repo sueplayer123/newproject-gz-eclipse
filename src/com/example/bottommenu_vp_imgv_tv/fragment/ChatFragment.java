@@ -2,21 +2,32 @@ package com.example.bottommenu_vp_imgv_tv.fragment;
 
 import java.io.BufferedReader;
 import java.io.File;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 import com.example.bottommenu_vp_imgv_tv.R;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Build;
 import android.os.Bundle;
+import android.os.Environment;
+import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.content.FileProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -25,30 +36,44 @@ import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.TextView;
+import android.widget.Toast;
 
 public class ChatFragment extends Fragment {
-	// private TextView textView2;
+
+	private static final int Request_take_photo = 100;
 	private Button button1;
 	private Button button2;
 	private Button button3;
 	private Button button4;
+	private Button btn6;
+	private Button main_btn;
+	private TextView main_tv;
+	private ImageView imgv1;
 	private EditText editText1;
 	private WebView webView1;
 	public static SQLiteDatabase database;
 	private static String stString1;
 	private static String stString2;
 	private static String stString3;
+	private Uri mImageUri;
+	private File imageFile;
+	private String path = Environment.getExternalStorageDirectory().getAbsolutePath() + "/capture/";
+	private String fileName;
 
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
 		View view = View.inflate(getActivity(), R.layout.fragment_chat, null);
 		return view;
+
 	}
 
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
+
 		TabHost tabHost = (TabHost) getActivity().findViewById(R.id.tabhost);
 		tabHost.setup();
 		tabHost.addTab(tabHost.newTabSpec("tab1")
@@ -59,25 +84,24 @@ public class ChatFragment extends Fragment {
 				.setIndicator("咨询专家", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view3));
 		tabHost.addTab(tabHost.newTabSpec("tab4")
 				.setIndicator("记录评价", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view4));
-		// textView2 = (TextView) getActivity().findViewById(R.id.textView2);
+
 		button1 = (Button) getActivity().findViewById(R.id.button1);
 		button2 = (Button) getActivity().findViewById(R.id.button2);
 		button3 = (Button) getActivity().findViewById(R.id.button3);
 		button4 = (Button) getActivity().findViewById(R.id.button4);
+		main_btn = (Button) getActivity().findViewById(R.id.main_btn);
+		btn6 = (Button) getActivity().findViewById(R.id.btn6);
+		main_tv = (TextView) getActivity().findViewById(R.id.main_tv);
+		imgv1 = (ImageView) getActivity().findViewById(R.id.imgv1);
 		editText1 = (EditText) getActivity().findViewById(R.id.editText1);
 		webView1 = (WebView) getActivity().findViewById(R.id.webView1);
+
 		database = openDatabase();
+
 		button1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
 
-				/*
-				 * InputStream inputStream = getResources().openRawResource(R.raw.sue); String
-				 * string = getString(inputStream);
-				 * 
-				 * textView2.setText(string); textView2.setMovementMethod(new
-				 * ScrollingMovementMethod());
-				 */
 				readHtmlFormAssets();
 			}
 		});
@@ -133,6 +157,41 @@ public class ChatFragment extends Fragment {
 				intent3.putExtra("data3", stString3);
 				startActivity(intent3);
 
+			}
+		});
+
+		btn6.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+
+					File file = new File(path);
+					if (!file.exists()) {
+						file.mkdir();
+					}
+					fileName = String.valueOf(System.currentTimeMillis()) + ".jpg";
+					imageFile = new File(path + fileName);
+					Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+					intent.addCategory(Intent.CATEGORY_DEFAULT);
+					if (imageFile != null) {
+						if (Build.VERSION.SDK_INT >= 24) {
+							intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+							mImageUri = FileProvider.getUriForFile(getActivity(),
+									"cn.fonxnickel.officialcamerademo.fileprovider", imageFile);
+						} else {
+
+							mImageUri = Uri.fromFile(imageFile);
+						}
+
+					}
+					intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
+					intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+					startActivityForResult(intent, Request_take_photo);
+
+				} else {
+					Toast.makeText(getActivity(), "没有检测到SD卡", Toast.LENGTH_LONG).show();
+				}
 			}
 		});
 	}
@@ -192,6 +251,73 @@ public class ChatFragment extends Fragment {
 			e.printStackTrace();
 		}
 		return sb.toString();
+	}
+
+	private void galleryAddPic(Uri uri) {
+		Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
+		mediaScanIntent.setData(uri);
+		getActivity().sendBroadcast(mediaScanIntent);
+	}
+
+	private void takePhoto() {
+		Intent takePhotoIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
+		if (takePhotoIntent.resolveActivity(getActivity().getPackageManager()) != null) {
+
+			imageFile = createImageFile();
+			if (imageFile != null) {
+				if (Build.VERSION.SDK_INT >= 24) {
+					takePhotoIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+					mImageUri = FileProvider.getUriForFile(getActivity(),
+							"cn.fonxnickel.officialcamerademo.fileprovider", imageFile);
+				} else {
+
+					mImageUri = Uri.fromFile(imageFile);
+				}
+				takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
+				startActivityForResult(takePhotoIntent, Request_take_photo);
+			}
+		}
+	}
+
+	private File createImageFile() {
+		if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
+			String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new Date());
+			String imageFileName = "JPEG_" + timeStamp + "_";
+			String storagePath = Environment.getExternalStorageDirectory().getAbsolutePath() + "/capture/";
+
+			File storageDir = new File(storagePath);
+			if (!storageDir.exists()) {
+				storageDir.mkdirs();
+			}
+
+			try {
+				imageFile = File.createTempFile(imageFileName, ".jpg", storageDir);
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		} else {
+			Toast.makeText(getActivity(), "没有检测到SD卡", Toast.LENGTH_LONG).show();
+		}
+		return imageFile;
+
+	}
+
+	@Override
+	public void onActivityResult(int requestCode, int resultCode, Intent data) {
+
+		super.onActivityResult(requestCode, resultCode, data);
+		if (requestCode == Request_take_photo && resultCode == Activity.RESULT_OK) {
+			try {
+
+				Bitmap bitmap = BitmapFactory
+						.decodeStream(getActivity().getContentResolver().openInputStream(mImageUri));
+				imgv1.setImageBitmap(bitmap);
+				galleryAddPic(mImageUri);
+			} catch (FileNotFoundException e) {
+				e.printStackTrace();
+			}
+		}
+
 	}
 
 	private void readHtmlFormAssets() {

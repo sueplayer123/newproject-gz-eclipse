@@ -23,5 +23,8 @@
     <string name="title_activity_pingjia">PingjiaActivity</string>
     <string name="title_activity_pjhz">PjhzActivity</string>
     <string name="title_activity_zhuanjia1">Zhuanjia1Activity</string>
+    <string name="title_activity_camera">CameraActivity</string>
+    <string name="title_activity_wxin">WxinActivity</string>
+    <string name="title_activity_wxentry">WXEntryActivity</string>
 
 </resources>

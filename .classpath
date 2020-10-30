@@ -3,8 +3,6 @@
 	<classpathentry kind="con" path="com.android.ide.eclipse.adt.ANDROID_FRAMEWORK"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.LIBRARIES"/>
 	<classpathentry exported="true" kind="con" path="com.android.ide.eclipse.adt.DEPENDENCIES"/>
-	<classpathentry kind="lib" path="libs/android-support-v4.jar"/>
-	<classpathentry kind="lib" path="libs/sun.misc.BASE64Decoder.jar"/>
 	<classpathentry kind="src" path="src"/>
 	<classpathentry kind="src" path="gen"/>
 	<classpathentry kind="lib" path="M:/poi-bin-4.1.2-20200217/poi-4.1.2/poi-4.1.2.jar"/>
@@ -27,5 +25,29 @@
 	<classpathentry kind="lib" path="M:/poi-bin-4.1.2-20200217/poi-4.1.2/lib/junit-4.12.jar"/>
 	<classpathentry kind="lib" path="M:/poi-bin-4.1.2-20200217/poi-4.1.2/lib/log4j-1.2.17.jar"/>
 	<classpathentry kind="lib" path="M:/poi-bin-4.1.2-20200217/poi-4.1.2/lib/SparseBitSet-1.2.jar"/>
+	<classpathentry kind="lib" path="F:/android-suppor-jar/android-support-v7-appcompat.jar"/>
+	<classpathentry kind="lib" path="F:/android-suppor-jar/android-support-v7-gridlayout.jar"/>
+	<classpathentry kind="lib" path="F:/android-suppor-jar/android-support-v13.jar"/>
+	<classpathentry kind="lib" path="F:/libs/libs/android-support-v7-appcompat.jar"/>
+	<classpathentry kind="lib" path="M:/dingding-interface/微信JAR包/微信JAR包/libammsdk.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/commons-beanutils-1.8.0.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/commons-collections-3.1.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/commons-lang-2.5.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/commons-logging-1.1.1.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/dom4j-1.6.1.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/ezmorph-1.0.6.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/httpclient-4.5.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/json-lib-2.4-jdk15.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/xmlpull_1_0_5.jar"/>
+	<classpathentry kind="lib" path="F:/微信授权登录/微信授权登录/xstream-1.4.jar"/>
+	<classpathentry kind="lib" path="F:/OkHttp/okhttputils-2_3_9.jar"/>
+	<classpathentry kind="lib" path="F:/http-request-5.6.jar"/>
+	<classpathentry kind="lib" path="F:/jar/converter-gson-2.0.0-beta2_.jar"/>
+	<classpathentry kind="lib" path="F:/jar/gson-2.4.jar"/>
+	<classpathentry kind="lib" path="F:/jar/retrofit-2.0.0-beta2.jar"/>
+	<classpathentry kind="lib" path="F:/permissions.jar"/>
+	<classpathentry kind="lib" path="F:/android-support-v4/android-support-v4/android-support-v4.jar"/>
+	<classpathentry kind="lib" path="F:/okhttp-3.3.0/okhttp-3.3.0.jar"/>
+	<classpathentry kind="lib" path="F:/okhttp-3.3.0/okio-1.8.0.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

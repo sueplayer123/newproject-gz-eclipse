@@ -36,7 +36,11 @@ public class MainActivity extends FragmentActivity implements OnClickListener, O
 		initEvent();
 	}
 
-	// ³õÊ¼»¯¿Ø¼þ
+	/*
+	 * @Override protected void onActivityResult(int requestCode, int resultCode,
+	 * Intent data) { super.onActivityResult(requestCode, resultCode, data); }
+	 */
+
 	private void initView() {
 		tv_menus = new ArrayList<TextView>();
 		tv_menus.add((TextView) findViewById(R.id.tv_bottomMenu_chat));
