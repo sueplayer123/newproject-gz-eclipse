@@ -48,7 +48,7 @@ public class ChatFragment extends Fragment {
 	private static final int REQ_TAKE_PHOTO = 444;
 	Button mThumbnail, mFullSize;
 	ImageView mImageView;
-	private Uri photoURI3;
+	// private Uri photoURI3;
 	// private static final int Request_take_photo = 100;
 	private Button button1;
 	private Button button2;
@@ -264,11 +264,11 @@ public class ChatFragment extends Fragment {
 		return sb.toString();
 	}
 
-	private void galleryAddPic(Uri uri) {
-		Intent mediaScanIntent = new Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE);
-		mediaScanIntent.setData(uri);
-		getActivity().sendBroadcast(mediaScanIntent);
-	}
+	/*
+	 * private void galleryAddPic(Uri uri) { Intent mediaScanIntent = new
+	 * Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); mediaScanIntent.setData(uri);
+	 * getActivity().sendBroadcast(mediaScanIntent); }
+	 */
 
 	/*
 	 * private void takePhoto() { Intent takePhotoIntent = new
@@ -321,7 +321,8 @@ public class ChatFragment extends Fragment {
 	 */
 	private void init() {
 		if (Build.VERSION.SDK_INT >= 23) {
-			requestPermissions(new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE }, 200);
+			requestPermissions(new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE,
+					Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA }, 200);
 		}
 
 		mThumbnail = (Button) getActivity().findViewById(R.id.thumbnail);
@@ -358,9 +359,9 @@ public class ChatFragment extends Fragment {
 					if (photoFile != null) {
 						// FileProvider 是一个特殊的 ContentProvider 的子类，
 						// 它使用 content:// Uri 代替了 file:/// Uri. ，更便利而且安全的为另一个app分享文件
-						Uri photoURI3 = FileProvider.getUriForFile(getActivity(), "com.youga.fileprovider", photoFile);
+						Uri photoURI = FileProvider.getUriForFile(getActivity(), "com.youga.fileprovider", photoFile);
 
-						takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI3);
+						takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
 						startActivityForResult(takePictureIntent, REQ_TAKE_PHOTO);
 					}
 				}
@@ -444,7 +445,8 @@ public class ChatFragment extends Fragment {
 
 			Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 			mImageView.setImageBitmap(bitmap);
-			galleryAddPic(photoURI3);
+			// galleryAddPic(photoURI3);
+			MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, null, null);
 			break;
 
 		}
