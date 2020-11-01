@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <paths>
-    <external-path
-        name="my_images"
-        path="."/>
+    <external-path name="my_images" path="Android/data/com.example.bottommenu_vp_imgv_tv/files/Pictures/" />
+    <external-path name="images" path="Pictures/" />
+    <external-path name="dcim" path="DCIM/" />
 </paths>
