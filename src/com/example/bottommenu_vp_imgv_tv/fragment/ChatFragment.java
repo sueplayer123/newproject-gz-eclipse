@@ -15,6 +15,7 @@ import com.example.bottommenu_vp_imgv_tv.R;
 
 import android.Manifest;
 import android.app.Activity;
+import android.content.ComponentName;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -39,42 +40,32 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TabHost;
-import android.widget.TextView;
 
 public class ChatFragment extends Fragment {
 	private static final int REQ_THUMB = 222;
-	// private static final int REQ_GALLERY = 333;
-	// private static final String TAG = "MainActivity";
 	private static final int REQ_TAKE_PHOTO = 444;
-	Button mThumbnail, mFullSize;
+	Button mFullSize;
 	ImageView mImageView;
-	// private Uri photoURI3;
-	// private static final int Request_take_photo = 100;
+	Uri uri1;
 	private Button button1;
 	private Button button2;
 	private Button button3;
 	private Button button4;
-	// private Button btn6;
-	private Button main_btn;
-	private TextView main_tv;
-	// private ImageView imgv1;
+	private Button btn_sharetext;
+	private Button btn_sharefriend;
+	private Button btn_sharecircle;
+	private Button btn_jump;
+	private Button btn_clear;
+	private EditText et_wechat_id;
+	private EditText share_text;
 	private EditText editText1;
 	private WebView webView1;
 	public static SQLiteDatabase database;
 	private static String stString1;
 	private static String stString2;
 	private static String stString3;
-	// private Uri mImageUri;
-	// private File imageFile;
-	// private String path =
-	// Environment.getExternalStorageDirectory().getAbsolutePath() + "/capture/";
-	// private String fileName;
-	/*
-	 * private String cameraPath =
-	 * 
-	 * Environment.getExternalStorageDirectory() + File.separator +
-	 * Environment.DIRECTORY_DCIM + File.separator + "Camera" + File.separator;
-	 */
+	// private IWXAPI wxapi;
+	// private static final int THUMB_SIZE = 150;
 
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
@@ -102,13 +93,15 @@ public class ChatFragment extends Fragment {
 		button2 = (Button) getActivity().findViewById(R.id.button2);
 		button3 = (Button) getActivity().findViewById(R.id.button3);
 		button4 = (Button) getActivity().findViewById(R.id.button4);
-		main_btn = (Button) getActivity().findViewById(R.id.main_btn);
-		// btn6 = (Button) getActivity().findViewById(R.id.btn6);
-		main_tv = (TextView) getActivity().findViewById(R.id.main_tv);
-		// imgv1 = (ImageView) getActivity().findViewById(R.id.imgv1);
+		btn_sharetext = (Button) getActivity().findViewById(R.id.btn_sharetext);
+		btn_sharecircle = (Button) getActivity().findViewById(R.id.btn_sharecircle);
+		btn_sharefriend = (Button) getActivity().findViewById(R.id.btn_sharefriend);
+		btn_clear = (Button) getActivity().findViewById(R.id.btn_clear);
+		btn_jump = (Button) getActivity().findViewById(R.id.btn_jump);
+		et_wechat_id = (EditText) getActivity().findViewById(R.id.et_wechat_id);
 		editText1 = (EditText) getActivity().findViewById(R.id.editText1);
 		webView1 = (WebView) getActivity().findViewById(R.id.webView1);
-
+		share_text = (EditText) getActivity().findViewById(R.id.share_text);
 		database = openDatabase();
 		init();
 		button1.setOnClickListener(new OnClickListener() {
@@ -173,44 +166,57 @@ public class ChatFragment extends Fragment {
 			}
 		});
 
-		/*
-		 * btn6.setOnClickListener(new OnClickListener() {
-		 * 
-		 * @Override public void onClick(View v) { if
-		 * (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-		 * SimpleDateFormat format = new SimpleDateFormat("yyyyMMddHHmmss"); Date date =
-		 * new Date(System.currentTimeMillis()); fileName = format.format(date);
-		 * 
-		 * File path =
-		 * Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM);
-		 * File outputImage = new File(path, fileName + ".jpg"); try { if
-		 * (outputImage.exists()) { outputImage.delete(); } outputImage.createNewFile();
-		 * } catch (IOException e) { e.printStackTrace(); } Intent intent = new
-		 * Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-		 * intent.addCategory(Intent.CATEGORY_DEFAULT); if (outputImage != null) { if
-		 * (Build.VERSION.SDK_INT >= 24) {
-		 * intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); mImageUri =
-		 * FileProvider.getUriForFile(getActivity(),
-		 * "cn.fonxnickel.officialcamerademo.fileprovider", outputImage); } else {
-		 * 
-		 * mImageUri = Uri.fromFile(outputImage); }
-		 * 
-		 * } intent.putExtra(MediaStore.Images.Media.ORIENTATION, 0);
-		 * intent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
-		 * startActivityForResult(intent, Request_take_photo);
-		 * 
-		 * }
-		 * 
-		 * else { Toast.makeText(getActivity(), "没有检测到SD卡", Toast.LENGTH_LONG).show(); }
-		 * } });
-		 */
+		btn_jump.setOnClickListener(new OnClickListener() {
 
+			@Override
+			public void onClick(View v) {
+				Intent intent = new Intent();
+				ComponentName cmp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.LauncherUI");
+				intent.setAction(Intent.ACTION_MAIN);
+				intent.addCategory(Intent.CATEGORY_LAUNCHER);
+				intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+				intent.setComponent(cmp);
+				getActivity().startActivity(intent);
+			}
+		});
+
+		btn_clear.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				et_wechat_id.setText("");
+			}
+		});
+		btn_sharefriend.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				shareToFriend(uri1);
+
+			}
+		});
+		btn_sharecircle.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				shareToFriendsLine(uri1);
+
+			}
+		});
+		btn_sharetext.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+
+			}
+		});
 	}
 
 	@Override
 	public void onDestroy() {
 
 		super.onDestroy();
+
 		if (!(database == null)) {
 			database.close();
 		}
@@ -264,82 +270,15 @@ public class ChatFragment extends Fragment {
 		return sb.toString();
 	}
 
-	/*
-	 * private void galleryAddPic(Uri uri) { Intent mediaScanIntent = new
-	 * Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); mediaScanIntent.setData(uri);
-	 * getActivity().sendBroadcast(mediaScanIntent); }
-	 */
-
-	/*
-	 * private void takePhoto() { Intent takePhotoIntent = new
-	 * Intent(MediaStore.ACTION_IMAGE_CAPTURE); if
-	 * (takePhotoIntent.resolveActivity(getActivity().getPackageManager()) != null)
-	 * {
-	 * 
-	 * imageFile = createImageFile(); if (imageFile != null) { if
-	 * (Build.VERSION.SDK_INT >= 24) {
-	 * takePhotoIntent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION); mImageUri =
-	 * FileProvider.getUriForFile(getActivity(),
-	 * "cn.fonxnickel.officialcamerademo.fileprovider", imageFile); } else {
-	 * 
-	 * mImageUri = Uri.fromFile(imageFile); }
-	 * takePhotoIntent.putExtra(MediaStore.EXTRA_OUTPUT, mImageUri);
-	 * startActivityForResult(takePhotoIntent, Request_take_photo); } } }
-	 */
-
-	/*
-	 * private File createImageFile() { if
-	 * (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED)) {
-	 * String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss").format(new
-	 * Date()); String imageFileName = "JPEG_" + timeStamp + "_"; String storagePath
-	 * = Environment.getExternalStorageDirectory().getAbsolutePath() + "/capture/";
-	 * 
-	 * File storageDir = new File(storagePath); if (!storageDir.exists()) {
-	 * storageDir.mkdirs(); }
-	 * 
-	 * try { imageFile = File.createTempFile(imageFileName, ".jpg", storageDir); }
-	 * catch (IOException e) { e.printStackTrace(); } } else {
-	 * Toast.makeText(getActivity(), "没有检测到SD卡", Toast.LENGTH_LONG).show(); } return
-	 * imageFile;
-	 * 
-	 * }
-	 */
-
-	/*
-	 * @Override public void onActivityResult(int requestCode, int resultCode,
-	 * Intent data) {
-	 * 
-	 * super.onActivityResult(requestCode, resultCode, data); if (requestCode ==
-	 * Request_take_photo && resultCode == Activity.RESULT_OK) { try {
-	 * 
-	 * Bitmap bitmap = BitmapFactory
-	 * .decodeStream(getActivity().getContentResolver().openInputStream(mImageUri));
-	 * imgv1.setImageBitmap(bitmap); galleryAddPic(mImageUri); } catch
-	 * (FileNotFoundException e) { e.printStackTrace(); } }
-	 * 
-	 * }
-	 */
 	private void init() {
 		if (Build.VERSION.SDK_INT >= 23) {
 			requestPermissions(new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE,
 					Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA }, 200);
 		}
 
-		mThumbnail = (Button) getActivity().findViewById(R.id.thumbnail);
 		mFullSize = (Button) getActivity().findViewById(R.id.fullSize);
-		// mAddGallery = (Button) getActivity().findViewById(R.id.addGallery);
+
 		mImageView = (ImageView) getActivity().findViewById(R.id.imageView);
-
-		mThumbnail.setOnClickListener(new View.OnClickListener() {
-
-			@Override
-			public void onClick(View v) {
-				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-				if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {// 判断是否有相机应用
-					startActivityForResult(takePictureIntent, REQ_THUMB);
-				}
-			}
-		});
 
 		mFullSize.setOnClickListener(new View.OnClickListener() {
 			@Override
@@ -388,27 +327,6 @@ public class ChatFragment extends Fragment {
 		return image;
 	}
 
-	/*
-	 * String mPublicPhotoPath;
-	 * 
-	 * private File createPublicImageFile() throws IOException { File path =
-	 * Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM); //
-	 * Create an image file name
-	 * 
-	 * String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss",
-	 * Locale.CHINA).format(new Date()); String imageFileName = "JPEG_" + timeStamp;
-	 * File image = File.createTempFile(imageFileName, 前缀 ".jpg", 后缀 path 文件夹 );
-	 * mPublicPhotoPath = image.getAbsolutePath(); return image; }
-	 */
-	/*
-	 * private void galleryAddPic() { Intent mediaScanIntent = new
-	 * Intent(Intent.ACTION_MEDIA_SCANNER_SCAN_FILE); File f = new
-	 * File(mPublicPhotoPath); Uri photoURI3 =
-	 * FileProvider.getUriForFile(getActivity(), "com.youga.fileprovider", f);
-	 * mediaScanIntent.setData(photoURI3);
-	 * getActivity().sendBroadcast(mediaScanIntent); }
-	 */
-
 	@Override
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
@@ -445,11 +363,69 @@ public class ChatFragment extends Fragment {
 
 			Bitmap bitmap = BitmapFactory.decodeFile(mCurrentPhotoPath, bmOptions);
 			mImageView.setImageBitmap(bitmap);
-			// galleryAddPic(photoURI3);
 			MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, null, null);
+			uri1 = Uri
+					.parse(MediaStore.Images.Media.insertImage(getActivity().getContentResolver(), bitmap, null, null));
 			break;
 
 		}
+	}
+
+	/*
+	 * private void sharePicture(Bitmap bitmap, int shareType) { WXImageObject
+	 * imgObj = new WXImageObject(bitmap);
+	 * 
+	 * WXMediaMessage msg = new WXMediaMessage(); msg.mediaObject = imgObj;
+	 * 
+	 * Bitmap thumbBitmap = Bitmap.createScaledBitmap(bitmap, THUMB_SIZE,
+	 * THUMB_SIZE, true); bitmap.recycle(); msg.thumbData =
+	 * bmpToByteArray(thumbBitmap);
+	 * 
+	 * SendMessageToWX.Req req = new SendMessageToWX.Req(); req.transaction =
+	 * buildTransaction("imgshareappdata"); req.message = msg; req.scene =
+	 * shareType; wxapi.sendReq(req); }
+	 * 
+	 * public static byte[] bmpToByteArray(Bitmap bm) { ByteArrayOutputStream baos =
+	 * new ByteArrayOutputStream(); bm.compress(Bitmap.CompressFormat.PNG, 100,
+	 * baos); return baos.toByteArray(); }
+	 * 
+	 * private String buildTransaction(final String type) { return (type == null) ?
+	 * String.valueOf(System.currentTimeMillis()) : type +
+	 * System.currentTimeMillis(); }
+	 * 
+	 * private void shareText(String text, int shareType) {
+	 * 
+	 * WXTextObject textObj = new WXTextObject(); textObj.text = text;
+	 * 
+	 * WXMediaMessage msg = new WXMediaMessage(); msg.mediaObject = textObj;
+	 * msg.description = text;
+	 * 
+	 * SendMessageToWX.Req req = new SendMessageToWX.Req();
+	 * 
+	 * req.transaction = buildTransaction("textshare"); req.message = msg; req.scene
+	 * = shareType; wxapi.sendReq(req); }
+	 */
+	private void shareToFriend(Uri uri) {
+
+		Intent intent = new Intent();
+		ComponentName comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
+		intent.setComponent(comp);
+		intent.setAction("android.intent.action.SEND");
+		intent.setType("image/*");
+
+		intent.putExtra(Intent.EXTRA_STREAM, uri);
+		startActivity(intent);
+	}
+
+	private void shareToFriendsLine(Uri uri) {
+		Intent intent = new Intent();
+		ComponentName comp = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareToTimeLineUI");
+		intent.setComponent(comp);
+		intent.setAction("android.intent.action.SEND");
+		intent.setType("image/*");
+
+		intent.putExtra(Intent.EXTRA_STREAM, uri);
+		startActivity(intent);
 	}
 
 	private void readHtmlFormAssets() {

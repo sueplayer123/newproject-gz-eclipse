@@ -129,13 +129,8 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="wrap_content" >
-
-                    <Button
-                        android:id="@+id/thumbnail"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="缩略图" />
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
 
                     <Button
                         android:id="@+id/fullSize"
@@ -143,7 +138,16 @@
                         android:layout_height="wrap_content"
                         android:text="对故障点拍照" />
 
-
+                    <Button
+                        android:id="@+id/btn_sharefriend"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="分享至好友" />
+                    <Button
+                        android:id="@+id/btn_sharecircle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="分享到朋友圈" />
                 </LinearLayout>
 
                 <ImageView
@@ -151,35 +155,57 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:contentDescription="@null" />
+            </LinearLayout>
 
-                
-                </LinearLayout>
+            <LinearLayout
+                android:id="@+id/view3"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical" >
+
+                <EditText
+                    android:id="@+id/et_wechat_id"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/edit_text_hint" />
 
                 <LinearLayout
-                    android:id="@+id/view3"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:orientation="vertical" >
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal" >
 
                     <Button
-                        android:id="@+id/main_btn"
+                        android:id="@+id/btn_jump"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="微信登录" />
+                        android:text="@string/jump_to_wechat" />
 
-                    <TextView
-                        android:id="@+id/main_tv"
+                    <Button
+                        android:id="@+id/btn_clear"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:text="@string/clear_content" />
+
+                    <Button
+                        android:id="@+id/btn_sharetext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="分享文本至微信" />
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/view4"
-                    android:layout_width="fill_parent"
-                    android:layout_height="fill_parent"
-                    android:text="这是第四个选项卡"
-                    android:textSize="20sp" />
-            
+                <EditText
+                    android:id="@+id/share_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:hint="请填写想要分享的内容" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/view4"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent"
+                android:text="这是第四个选项卡"
+                android:textSize="20sp" />
         </FrameLayout>
     </LinearLayout>
 
