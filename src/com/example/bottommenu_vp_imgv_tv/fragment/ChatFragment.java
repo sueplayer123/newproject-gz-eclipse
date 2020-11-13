@@ -11,11 +11,13 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import com.example.bottommenu_vp_imgv_tv.PlatformUtil;
 import com.example.bottommenu_vp_imgv_tv.R;
 
 import android.Manifest;
 import android.app.Activity;
 import android.content.ComponentName;
+import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
@@ -30,6 +32,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -40,6 +43,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TabHost;
+import android.widget.Toast;
 
 public class ChatFragment extends Fragment {
 	private static final int REQ_THUMB = 222;
@@ -64,8 +68,6 @@ public class ChatFragment extends Fragment {
 	private static String stString1;
 	private static String stString2;
 	private static String stString3;
-	// private IWXAPI wxapi;
-	// private static final int THUMB_SIZE = 150;
 
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
@@ -207,7 +209,7 @@ public class ChatFragment extends Fragment {
 
 			@Override
 			public void onClick(View v) {
-
+				shareWechatFriend(getActivity(), share_text.getText().toString());
 			}
 		});
 	}
@@ -426,6 +428,21 @@ public class ChatFragment extends Fragment {
 
 		intent.putExtra(Intent.EXTRA_STREAM, uri);
 		startActivity(intent);
+	}
+
+	public void shareWechatFriend(Context context, String content) {
+		if (PlatformUtil.isInstallApp(context, PlatformUtil.PACKAGE_WECHAT)) {
+			Intent intent = new Intent();
+			ComponentName cop = new ComponentName("com.tencent.mm", "com.tencent.mm.ui.tools.ShareImgUI");
+			intent.setComponent(cop);
+			intent.setAction(Intent.ACTION_SEND);
+			intent.putExtra("android.intent.extra.TEXT", content);
+			intent.putExtra("Kdescription", !TextUtils.isEmpty(content) ? content : "");
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			context.startActivity(intent);
+		} else {
+			Toast.makeText(context, "您需要安装微信客户端", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	private void readHtmlFormAssets() {
