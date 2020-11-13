@@ -8,6 +8,7 @@ import android.content.pm.PackageManager;
 
 public class PlatformUtil {
 	public static final String PACKAGE_WECHAT = "com.tencent.mm";
+	public static final String PACKAGE_MOBILE_QQ = "com.tencent.mobileqq";
 
 	public static boolean isInstallApp(Context context, String app_package) {
 		final PackageManager packageManager = context.getPackageManager();

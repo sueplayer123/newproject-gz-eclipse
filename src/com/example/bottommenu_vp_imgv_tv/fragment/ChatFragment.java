@@ -58,6 +58,9 @@ public class ChatFragment extends Fragment {
 	private Button btn_sharetext;
 	private Button btn_sharefriend;
 	private Button btn_sharecircle;
+	private Button btn_sharetoding;
+	private Button btn_sharetoqq;
+
 	private Button btn_jump;
 	private Button btn_clear;
 	private EditText et_wechat_id;
@@ -98,6 +101,9 @@ public class ChatFragment extends Fragment {
 		btn_sharetext = (Button) getActivity().findViewById(R.id.btn_sharetext);
 		btn_sharecircle = (Button) getActivity().findViewById(R.id.btn_sharecircle);
 		btn_sharefriend = (Button) getActivity().findViewById(R.id.btn_sharefriend);
+		btn_sharetoding = (Button) getActivity().findViewById(R.id.btn_sharetoding);
+		btn_sharetoqq = (Button) getActivity().findViewById(R.id.btn_sharetoqq);
+
 		btn_clear = (Button) getActivity().findViewById(R.id.btn_clear);
 		btn_jump = (Button) getActivity().findViewById(R.id.btn_jump);
 		et_wechat_id = (EditText) getActivity().findViewById(R.id.et_wechat_id);
@@ -212,6 +218,44 @@ public class ChatFragment extends Fragment {
 				shareWechatFriend(getActivity(), share_text.getText().toString());
 			}
 		});
+		btn_sharetoding.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				shareText(getActivity(), share_text.getText().toString());
+			}
+		});
+		btn_sharetoqq.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View v) {
+				shareQQ(getActivity(), share_text.getText().toString());
+			}
+		});
+	}
+
+	public static void shareText(Context context, String extraText) {
+		Intent intent = new Intent(Intent.ACTION_SEND);
+		intent.setType("text/plain");
+		intent.putExtra(Intent.EXTRA_SUBJECT, "标题");
+		intent.putExtra(Intent.EXTRA_TEXT, extraText);
+		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		context.startActivity(Intent.createChooser(intent, "标题"));
+	}
+
+	public static void shareQQ(Context mContext, String content) {
+		if (PlatformUtil.isInstallApp(mContext, PlatformUtil.PACKAGE_MOBILE_QQ)) {
+			Intent intent = new Intent("android.intent.action.SEND");
+			intent.setType("text/plain");
+			intent.putExtra(Intent.EXTRA_SUBJECT, "分享");
+			intent.putExtra(Intent.EXTRA_TEXT, content);
+			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+			intent.setComponent(
+					new ComponentName("com.tencent.mobileqq", "com.tencent.mobileqq.activity.JumpActivity"));
+			mContext.startActivity(intent);
+		} else {
+			Toast.makeText(mContext, "您需要安装QQ客户端", Toast.LENGTH_LONG).show();
+		}
 	}
 
 	@Override

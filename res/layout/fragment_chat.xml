@@ -143,6 +143,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="分享至好友" />
+
                     <Button
                         android:id="@+id/btn_sharecircle"
                         android:layout_width="wrap_content"
@@ -198,6 +199,18 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:hint="请填写想要分享的内容" />
+
+                <Button
+                    android:id="@+id/btn_sharetoding"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分享文本至钉钉" />
+
+                <Button
+                    android:id="@+id/btn_sharetoqq"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="分享文本至QQ" />
             </LinearLayout>
 
             <TextView

@@ -111,11 +111,13 @@ public final class R {
         public static final int btn_sharecircle=0x7f0a0027;
         public static final int btn_sharefriend=0x7f0a0026;
         public static final int btn_sharetext=0x7f0a002d;
+        public static final int btn_sharetoding=0x7f0a002f;
+        public static final int btn_sharetoqq=0x7f0a0030;
         public static final int button1=0x7f0a001e;
         public static final int button2=0x7f0a001f;
         public static final int button3=0x7f0a0020;
         public static final int button4=0x7f0a0021;
-        public static final int desc=0x7f0a0033;
+        public static final int desc=0x7f0a0035;
         public static final int ed1=0x7f0a000e;
         public static final int edit1=0x7f0a0016;
         public static final int edit2=0x7f0a0017;
@@ -129,19 +131,19 @@ public final class R {
         public static final int imgv_bottomMenu_discovery=0x7f0a0009;
         public static final int imgv_bottomMenu_me=0x7f0a000c;
         public static final int linearLayout1=0x7f0a001d;
-        public static final int list_view=0x7f0a0030;
+        public static final int list_view=0x7f0a0032;
         public static final int ll_bottomMenu_addressBook=0x7f0a0005;
         public static final int ll_bottomMenu_chat=0x7f0a0002;
         public static final int ll_bottomMenu_discovery=0x7f0a0008;
         public static final int ll_bottomMenu_me=0x7f0a000b;
-        public static final int name=0x7f0a0032;
+        public static final int name=0x7f0a0034;
         public static final int ratingBar1=0x7f0a000f;
         public static final int save=0x7f0a0018;
         public static final int share_text=0x7f0a002e;
         public static final int show=0x7f0a0019;
         public static final int tabhost=0x7f0a001a;
         public static final int tex1=0x7f0a0012;
-        public static final int textV1=0x7f0a0031;
+        public static final int textV1=0x7f0a0033;
         public static final int textVie1=0x7f0a0013;
         public static final int textView1=0x7f0a0000;
         public static final int textView2=0x7f0a0014;
@@ -153,7 +155,7 @@ public final class R {
         public static final int view1=0x7f0a001b;
         public static final int view2=0x7f0a0024;
         public static final int view3=0x7f0a0029;
-        public static final int view4=0x7f0a002f;
+        public static final int view4=0x7f0a0031;
         public static final int vp_main_menuContent=0x7f0a0001;
         public static final int webView1=0x7f0a0023;
     }
