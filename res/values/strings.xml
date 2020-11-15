@@ -26,5 +26,7 @@
     <string name="clear_content">取消</string>
     <string name="jump_to_wechat">跳转至微信</string>
     <string name="edit_text_hint">请输入好友微信号</string>
+    <string name="title_activity_welcome">WelcomeActivity</string>
+    <string name="title_activity_splash">SplashActivity</string>
 
 </resources>

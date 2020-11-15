@@ -13,10 +13,13 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends FragmentActivity implements OnClickListener, OnPageChangeListener {
 	private ArrayList<TextView> tv_menus;
@@ -36,10 +39,29 @@ public class MainActivity extends FragmentActivity implements OnClickListener, O
 		initEvent();
 	}
 
-	/*
-	 * @Override protected void onActivityResult(int requestCode, int resultCode,
-	 * Intent data) { super.onActivityResult(requestCode, resultCode, data); }
-	 */
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+		getMenuInflater().inflate(R.menu.main, menu);
+		return true;
+	}
+
+	public boolean onMenuItemClick(MenuItem item) {
+
+		switch (item.getItemId()) {
+		case R.id.exit:
+			Toast.makeText(this, "ÕÀ≥ˆ", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.set:
+			Toast.makeText(this, "…Ë÷√", Toast.LENGTH_SHORT).show();
+			break;
+		case R.id.account:
+			Toast.makeText(this, "’À∫≈", Toast.LENGTH_SHORT).show();
+			break;
+		default:
+			break;
+		}
+		return false;
+	}
 
 	private void initView() {
 		tv_menus = new ArrayList<TextView>();
