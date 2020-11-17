@@ -45,8 +45,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, O
 		return true;
 	}
 
-	public boolean onMenuItemClick(MenuItem item) {
-
+	public boolean onOptionsItemSelected(MenuItem item) {
 		switch (item.getItemId()) {
 		case R.id.exit:
 			Toast.makeText(this, "ÍË³ö", Toast.LENGTH_SHORT).show();
@@ -60,7 +59,7 @@ public class MainActivity extends FragmentActivity implements OnClickListener, O
 		default:
 			break;
 		}
-		return false;
+		return true;
 	}
 
 	private void initView() {

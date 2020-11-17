@@ -213,12 +213,40 @@
                     android:text="分享文本至QQ" />
             </LinearLayout>
 
-            <TextView
+            <android.support.v4.widget.DrawerLayout
                 android:id="@+id/view4"
-                android:layout_width="fill_parent"
-                android:layout_height="fill_parent"
-                android:text="这是第四个选项卡"
-                android:textSize="20sp" />
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <!-- 主屏幕显示的内容 -->
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" >
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:text="我是主屏幕" />
+                </FrameLayout>
+                <!-- 左侧菜单弹出的内容 -->
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="start"
+                    android:background="#87CEEB" >
+
+                    <!-- 菜单列表 -->
+
+                    <ListView
+                        android:id="@+id/listView"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent" >
+                    </ListView>
+                </RelativeLayout>
+            </android.support.v4.widget.DrawerLayout>
         </FrameLayout>
     </LinearLayout>
 

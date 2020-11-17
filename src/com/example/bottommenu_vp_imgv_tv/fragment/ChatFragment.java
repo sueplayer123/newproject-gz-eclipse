@@ -32,6 +32,7 @@ import android.provider.MediaStore;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.content.FileProvider;
+import android.support.v4.widget.DrawerLayout;
 import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -39,9 +40,12 @@ import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TabHost;
 import android.widget.Toast;
 
@@ -60,7 +64,6 @@ public class ChatFragment extends Fragment {
 	private Button btn_sharecircle;
 	private Button btn_sharetoding;
 	private Button btn_sharetoqq;
-
 	private Button btn_jump;
 	private Button btn_clear;
 	private EditText et_wechat_id;
@@ -71,6 +74,7 @@ public class ChatFragment extends Fragment {
 	private static String stString1;
 	private static String stString2;
 	private static String stString3;
+	private String[] item = new String[] { "èœå•ä¸€", "èœå•äºŒ", "èœå•ä¸‰", "èœå•å››" };
 
 	public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
 			@Nullable Bundle savedInstanceState) {
@@ -86,13 +90,13 @@ public class ChatFragment extends Fragment {
 		TabHost tabHost = (TabHost) getActivity().findViewById(R.id.tabhost);
 		tabHost.setup();
 		tabHost.addTab(tabHost.newTabSpec("tab1")
-				.setIndicator("²éÑ¯Á÷³Ì", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view1));
+				.setIndicator("æŸ¥è¯¢æµç¨‹", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view1));
 		tabHost.addTab(tabHost.newTabSpec("tab2")
-				.setIndicator("ÅÄÕÕ·ÖÏí", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view2));
+				.setIndicator("æ‹ç…§åˆ†äº«", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view2));
 		tabHost.addTab(tabHost.newTabSpec("tab3")
-				.setIndicator("¶Ô½ÓÎ¢ĞÅ", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view3));
+				.setIndicator("å¯¹æ¥å¾®ä¿¡", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view3));
 		tabHost.addTab(tabHost.newTabSpec("tab4")
-				.setIndicator("¸ü¶à´ı¶¨", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view4));
+				.setIndicator("æ›´å¤šå¾…å®š", getResources().getDrawable(R.drawable.ic_launcher)).setContent(R.id.view4));
 
 		button1 = (Button) getActivity().findViewById(R.id.button1);
 		button2 = (Button) getActivity().findViewById(R.id.button2);
@@ -112,6 +116,52 @@ public class ChatFragment extends Fragment {
 		share_text = (EditText) getActivity().findViewById(R.id.share_text);
 		database = openDatabase();
 		init();
+		ListView listView = (ListView) getActivity().findViewById(R.id.listView);
+
+		ArrayAdapter adapter = new ArrayAdapter(getActivity(), android.R.layout.simple_list_item_1, item);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+				switch (position) {
+				case 0:
+					Toast.makeText(getActivity(), "ä½ ç‚¹å‡»çš„æ˜¯èœå•ä¸€", Toast.LENGTH_SHORT).show();
+					break;
+				case 1:
+					Toast.makeText(getActivity(), "ä½ ç‚¹å‡»çš„æ˜¯èœå•äºŒ", Toast.LENGTH_SHORT).show();
+					break;
+				case 2:
+					Toast.makeText(getActivity(), "ä½ ç‚¹å‡»çš„æ˜¯èœå•ä¸‰", Toast.LENGTH_SHORT).show();
+					break;
+				case 3:
+					Toast.makeText(getActivity(), "ä½ ç‚¹å‡»çš„æ˜¯èœå•å››", Toast.LENGTH_SHORT).show();
+					break;
+				default:
+					break;
+				}
+			}
+		});
+		DrawerLayout drawerLayout = (DrawerLayout) getActivity().findViewById(R.id.view4);
+		drawerLayout.setDrawerListener(new DrawerLayout.DrawerListener() {
+			@Override
+			public void onDrawerSlide(View drawerView, float slideOffset) {
+			}
+
+			@Override
+			public void onDrawerOpened(View drawerView) {
+				Toast.makeText(getActivity(), "æŠ½å±‰èœå•å·²æ‰“å¼€ï¼", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onDrawerClosed(View drawerView) {
+				Toast.makeText(getActivity(), "æŠ½å±‰èœå•å·²å…³é—­ï¼", Toast.LENGTH_SHORT).show();
+			}
+
+			@Override
+			public void onDrawerStateChanged(int newState) {
+			}
+		});
 		button1.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View v) {
@@ -237,24 +287,24 @@ public class ChatFragment extends Fragment {
 	public static void shareText(Context context, String extraText) {
 		Intent intent = new Intent(Intent.ACTION_SEND);
 		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_SUBJECT, "±êÌâ");
+		intent.putExtra(Intent.EXTRA_SUBJECT, "æ ‡é¢˜");
 		intent.putExtra(Intent.EXTRA_TEXT, extraText);
 		intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-		context.startActivity(Intent.createChooser(intent, "±êÌâ"));
+		context.startActivity(Intent.createChooser(intent, "æ ‡é¢˜"));
 	}
 
 	public static void shareQQ(Context mContext, String content) {
 		if (PlatformUtil.isInstallApp(mContext, PlatformUtil.PACKAGE_MOBILE_QQ)) {
 			Intent intent = new Intent("android.intent.action.SEND");
 			intent.setType("text/plain");
-			intent.putExtra(Intent.EXTRA_SUBJECT, "·ÖÏí");
+			intent.putExtra(Intent.EXTRA_SUBJECT, "åˆ†äº«");
 			intent.putExtra(Intent.EXTRA_TEXT, content);
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			intent.setComponent(
 					new ComponentName("com.tencent.mobileqq", "com.tencent.mobileqq.activity.JumpActivity"));
 			mContext.startActivity(intent);
 		} else {
-			Toast.makeText(mContext, "ÄúĞèÒª°²×°QQ¿Í»§¶Ë", Toast.LENGTH_LONG).show();
+			Toast.makeText(mContext, "æ‚¨éœ€è¦å®‰è£…QQå®¢æˆ·ç«¯", Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -331,19 +381,19 @@ public class ChatFragment extends Fragment {
 			public void onClick(View v) {
 				Intent takePictureIntent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
 				// Ensure that there's a camera activity to handle the intent
-				if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {// ÅĞ¶ÏÊÇ·ñÓĞÏà»úÓ¦ÓÃ
+				if (takePictureIntent.resolveActivity(getActivity().getPackageManager()) != null) {// åˆ¤æ–­æ˜¯å¦æœ‰ç›¸æœºåº”ç”¨
 					// Create the File where the photo should go
 					File photoFile = null;
 					try {
-						photoFile = createImageFile();// ´´½¨ÁÙÊ±Í¼Æ¬ÎÄ¼ş
+						photoFile = createImageFile();// åˆ›å»ºä¸´æ—¶å›¾ç‰‡æ–‡ä»¶
 
 					} catch (IOException ex) {
 						ex.printStackTrace();
 					}
 					// Continue only if the File was successfully created
 					if (photoFile != null) {
-						// FileProvider ÊÇÒ»¸öÌØÊâµÄ ContentProvider µÄ×ÓÀà£¬
-						// ËüÊ¹ÓÃ content:// Uri ´úÌæÁË file:/// Uri. £¬¸ü±ãÀû¶øÇÒ°²È«µÄÎªÁíÒ»¸öapp·ÖÏíÎÄ¼ş
+						// FileProvider æ˜¯ä¸€ä¸ªç‰¹æ®Šçš„ ContentProvider çš„å­ç±»ï¼Œ
+						// å®ƒä½¿ç”¨ content:// Uri ä»£æ›¿äº† file:/// Uri. ï¼Œæ›´ä¾¿åˆ©è€Œä¸”å®‰å…¨çš„ä¸ºå¦ä¸€ä¸ªappåˆ†äº«æ–‡ä»¶
 						Uri photoURI = FileProvider.getUriForFile(getActivity(), "com.youga.fileprovider", photoFile);
 
 						takePictureIntent.putExtra(MediaStore.EXTRA_OUTPUT, photoURI);
@@ -361,13 +411,13 @@ public class ChatFragment extends Fragment {
 		// Create an image file name
 		String timeStamp = new SimpleDateFormat("yyyyMMdd_HHmmss", Locale.CHINA).format(new Date());
 		String imageFileName = "JPEG_" + timeStamp + "_";
-		// .getExternalFilesDir()·½·¨¿ÉÒÔ»ñÈ¡µ½ SDCard/Android/data/ÄãµÄÓ¦ÓÃµÄ°üÃû/files/
-		// Ä¿Â¼£¬Ò»°ã·ÅÒ»Ğ©³¤Ê±¼ä±£´æµÄÊı¾İ
+		// .getExternalFilesDir()æ–¹æ³•å¯ä»¥è·å–åˆ° SDCard/Android/data/ä½ çš„åº”ç”¨çš„åŒ…å/files/
+		// ç›®å½•ï¼Œä¸€èˆ¬æ”¾ä¸€äº›é•¿æ—¶é—´ä¿å­˜çš„æ•°æ®
 		File storageDir = getActivity().getExternalFilesDir(Environment.DIRECTORY_PICTURES);
-		// ´´½¨ÁÙÊ±ÎÄ¼ş,ÎÄ¼şÇ°×º²»ÄÜÉÙÓÚÈı¸ö×Ö·û,ºó×ºÈç¹ûÎª¿ÕÄ¬ÈÏÎ´".tmp"
-		File image = File.createTempFile(imageFileName, /* Ç°×º */
-				".jpg", /* ºó×º */
-				storageDir /* ÎÄ¼ş¼Ğ */
+		// åˆ›å»ºä¸´æ—¶æ–‡ä»¶,æ–‡ä»¶å‰ç¼€ä¸èƒ½å°‘äºä¸‰ä¸ªå­—ç¬¦,åç¼€å¦‚æœä¸ºç©ºé»˜è®¤æœª".tmp"
+		File image = File.createTempFile(imageFileName, /* å‰ç¼€ */
+				".jpg", /* åç¼€ */
+				storageDir /* æ–‡ä»¶å¤¹ */
 		);
 		mCurrentPhotoPath = image.getAbsolutePath();
 		return image;
@@ -377,14 +427,14 @@ public class ChatFragment extends Fragment {
 	public void onActivityResult(int requestCode, int resultCode, Intent data) {
 		super.onActivityResult(requestCode, resultCode, data);
 		switch (requestCode) {
-		case REQ_THUMB:// ·µ»Ø½á¹û
+		case REQ_THUMB:// è¿”å›ç»“æœ
 			if (resultCode != Activity.RESULT_OK)
 				return;
 			Bundle extras = data.getExtras();
 			Bitmap imageBitmap = (Bitmap) extras.get("data");
 			mImageView.setImageBitmap(imageBitmap);
 			break;
-		case REQ_TAKE_PHOTO:// ·µ»Ø½á¹û
+		case REQ_TAKE_PHOTO:// è¿”å›ç»“æœ
 			if (resultCode != Activity.RESULT_OK)
 				return;
 
@@ -417,40 +467,6 @@ public class ChatFragment extends Fragment {
 		}
 	}
 
-	/*
-	 * private void sharePicture(Bitmap bitmap, int shareType) { WXImageObject
-	 * imgObj = new WXImageObject(bitmap);
-	 * 
-	 * WXMediaMessage msg = new WXMediaMessage(); msg.mediaObject = imgObj;
-	 * 
-	 * Bitmap thumbBitmap = Bitmap.createScaledBitmap(bitmap, THUMB_SIZE,
-	 * THUMB_SIZE, true); bitmap.recycle(); msg.thumbData =
-	 * bmpToByteArray(thumbBitmap);
-	 * 
-	 * SendMessageToWX.Req req = new SendMessageToWX.Req(); req.transaction =
-	 * buildTransaction("imgshareappdata"); req.message = msg; req.scene =
-	 * shareType; wxapi.sendReq(req); }
-	 * 
-	 * public static byte[] bmpToByteArray(Bitmap bm) { ByteArrayOutputStream baos =
-	 * new ByteArrayOutputStream(); bm.compress(Bitmap.CompressFormat.PNG, 100,
-	 * baos); return baos.toByteArray(); }
-	 * 
-	 * private String buildTransaction(final String type) { return (type == null) ?
-	 * String.valueOf(System.currentTimeMillis()) : type +
-	 * System.currentTimeMillis(); }
-	 * 
-	 * private void shareText(String text, int shareType) {
-	 * 
-	 * WXTextObject textObj = new WXTextObject(); textObj.text = text;
-	 * 
-	 * WXMediaMessage msg = new WXMediaMessage(); msg.mediaObject = textObj;
-	 * msg.description = text;
-	 * 
-	 * SendMessageToWX.Req req = new SendMessageToWX.Req();
-	 * 
-	 * req.transaction = buildTransaction("textshare"); req.message = msg; req.scene
-	 * = shareType; wxapi.sendReq(req); }
-	 */
 	private void shareToFriend(Uri uri) {
 
 		Intent intent = new Intent();
@@ -485,7 +501,7 @@ public class ChatFragment extends Fragment {
 			intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
 			context.startActivity(intent);
 		} else {
-			Toast.makeText(context, "ÄúĞèÒª°²×°Î¢ĞÅ¿Í»§¶Ë", Toast.LENGTH_LONG).show();
+			Toast.makeText(context, "æ‚¨éœ€è¦å®‰è£…å¾®ä¿¡å®¢æˆ·ç«¯", Toast.LENGTH_LONG).show();
 		}
 	}
 
@@ -497,4 +513,5 @@ public class ChatFragment extends Fragment {
 		webView1.setBackgroundColor(Color.TRANSPARENT);
 		webView1.loadUrl("file:///android_asset/html/all2.html");
 	}
+
 }
