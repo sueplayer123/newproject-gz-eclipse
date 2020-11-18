@@ -13,17 +13,13 @@
     </style>
 
     <!-- Application theme. -->
-    <style name="AppTheme" parent="AppBaseTheme">
-        <!-- All customizations that are NOT specific to a particular API-level can go here. -->
-    </style>
-
     <style name="ButtomMenuImgv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginBottom">5dp</item>
         <item name="android:layout_marginTop">5dp</item>
     </style>
-    
+
     <style name="ButtomMenuTv">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
@@ -39,4 +35,13 @@
         <item name="android:gravity">center</item>
         <item name="android:orientation">vertical</item>
     </style>
+
+    <style name="AppTheme" parent="AppBaseTheme">
+
+        <!-- Customize your theme here. -->
+        <!-- <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorAccent">@color/colorAccent</item> -->
+    </style>
+
 </resources>

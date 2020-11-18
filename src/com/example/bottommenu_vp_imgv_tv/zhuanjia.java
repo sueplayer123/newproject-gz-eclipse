@@ -16,9 +16,10 @@ public class zhuanjia extends Activity {
 		textView1 = (TextView) findViewById(R.id.textView1);
 		textView2 = (TextView) findViewById(R.id.textView2);
 		textView3 = (TextView) findViewById(R.id.textView3);
-		textView1.setText("张三");
-		textView2.setText("继电保护原理与应用");
-		textView3.setText("13786714534");
+		Bundle bundle = getIntent().getExtras();
+		textView1.setText(bundle.getString("xinxi1"));
+		textView2.setText(bundle.getString("xinxi2"));
+		textView3.setText(bundle.getString("telphone"));
 
 	}
 

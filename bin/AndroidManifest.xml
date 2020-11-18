@@ -35,6 +35,11 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name" >
+            <intent-filter>
+                <action android:name="com.example.bottommenu_vp_imgv_tv.MainActivity" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".DemoActivity"
@@ -86,15 +91,6 @@
             android:label="@string/title_activity_pjhz" >
             <intent-filter>
                 <action android:name="com.example.bottommenu_vp_imgv_tv.PjhzActivity" />
-
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
-        </activity>
-        <activity
-            android:name=".Zhuanjia1Activity"
-            android:label="@string/title_activity_zhuanjia1" >
-            <intent-filter>
-                <action android:name="com.example.bottommenu_vp_imgv_tv.Zhuanjia1Activity" />
 
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
