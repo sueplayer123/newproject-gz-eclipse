@@ -3,9 +3,10 @@
 
     <color name="bg_line_light_gray">#9b9b9b</color>
     <color name="bg_main_green">#31c016</color>
-    <color name="colorPrimary">#3F51B5</color>
-    <color name="colorPrimaryDark">#303F9F</color>
-    <color name="colorAccent">#FF4081</color>
     <color name="colorThem">#9507a6e6</color>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+    <color name="color_minefragment_top">#20B2AA</color>
 
 </resources>

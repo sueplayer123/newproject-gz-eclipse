@@ -1,7 +1,6 @@
 package com.example.bottommenu_vp_imgv_tv;
 
 import android.app.Activity;
-import android.app.ProgressDialog;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -9,101 +8,84 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.TextView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 public class RegisterActivity extends Activity implements View.OnClickListener {
-	private EditText editTextP, editSMS, editTextCT;
-	private Button button, SMSBtn;
-	private TextView enterText;
-	private ImageView returnImage;
+
+	private String realCode;
+	private DBOpenHelper mDBOpenHelper;
+	private Button mBtRegisteractivityRegister;
+	private RelativeLayout mRlRegisteractivityTop;
+	private ImageView mIvRegisteractivityBack;
+	private LinearLayout mLlRegisteractivityBody;
+	private EditText mEtRegisteractivityUsername;
+	private EditText mEtRegisteractivityPassword1;
+	private EditText mEtRegisteractivityPassword2;
+	private EditText mEtRegisteractivityPhonecodes;
+	private ImageView mIvRegisteractivityShowcode;
+	private RelativeLayout mRlRegisteractivityBottom;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.login_register_activity);
-		init();
+		setContentView(R.layout.activity_register);
+
+		initView();
+
+		mDBOpenHelper = new DBOpenHelper(this);
+
+		mIvRegisteractivityShowcode.setImageBitmap(Code.getInstance().createBitmap());
+		realCode = Code.getInstance().getCode().toLowerCase();
 	}
 
-	private void init() {
-		editTextP = (EditText) findViewById(R.id.et_phone_num);
-		editSMS = (EditText) findViewById(R.id.et_sms_code);
-		editTextCT = (EditText) findViewById(R.id.et_password);
-		button = (Button) findViewById(R.id.bn_immediateRegistration);
-		button.setOnClickListener(this);
-		enterText = (TextView) findViewById(R.id.tv_enter);
-		enterText.setOnClickListener(this);
-		returnImage = (ImageView) findViewById(R.id.iv_return);
-		returnImage.setOnClickListener(this);
-		SMSBtn = (Button) findViewById(R.id.bn_sms_code);
-		SMSBtn.setOnClickListener(this);
+	private void initView() {
+		mBtRegisteractivityRegister = findViewById(R.id.bt_registeractivity_register);
+		mRlRegisteractivityTop = findViewById(R.id.rl_registeractivity_top);
+		mIvRegisteractivityBack = findViewById(R.id.iv_registeractivity_back);
+		mLlRegisteractivityBody = findViewById(R.id.ll_registeractivity_body);
+		mEtRegisteractivityUsername = findViewById(R.id.et_registeractivity_username);
+		mEtRegisteractivityPassword1 = findViewById(R.id.et_registeractivity_password1);
+		mEtRegisteractivityPassword2 = findViewById(R.id.et_registeractivity_password2);
+		mEtRegisteractivityPhonecodes = findViewById(R.id.et_registeractivity_phoneCodes);
+		mIvRegisteractivityShowcode = findViewById(R.id.iv_registeractivity_showCode);
+		mRlRegisteractivityBottom = findViewById(R.id.rl_registeractivity_bottom);
+
+		mIvRegisteractivityBack.setOnClickListener(this);
+		mIvRegisteractivityShowcode.setOnClickListener(this);
+		mBtRegisteractivityRegister.setOnClickListener(this);
 	}
 
-	@Override
-	public void onClick(View v) {
-		switch (v.getId()) {
-		case R.id.bn_immediateRegistration:
-			register();
+	public void onClick(View view) {
+		switch (view.getId()) {
+		case R.id.iv_registeractivity_back:
+			Intent intent1 = new Intent(this, loginActivity.class);
+			startActivity(intent1);
+			finish();
 			break;
-		case R.id.tv_enter:
-			returnEnter();
+		case R.id.iv_registeractivity_showCode:
+			mIvRegisteractivityShowcode.setImageBitmap(Code.getInstance().createBitmap());
+			realCode = Code.getInstance().getCode().toLowerCase();
 			break;
-		case R.id.iv_return:
-			returnEnter();
-			break;
-		case R.id.bn_sms_code:
-			final String username = editTextP.getText().toString().trim();
-			if (TextUtils.isEmpty(username)) {
-				Toast.makeText(this, getResources().getString(R.string.User_name_cannot_be_empty), Toast.LENGTH_SHORT)
-						.show();
-				editTextP.requestFocus();
+		case R.id.bt_registeractivity_register:
+			String username = mEtRegisteractivityUsername.getText().toString().trim();
+			String password = mEtRegisteractivityPassword2.getText().toString().trim();
+			String phoneCode = mEtRegisteractivityPhonecodes.getText().toString().toLowerCase();
+			if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password) && !TextUtils.isEmpty(phoneCode)) {
+				if (phoneCode.equals(realCode)) {
+					mDBOpenHelper.add(username, password);
+					Intent intent2 = new Intent(this, loginActivity.class);
+					startActivity(intent2);
+					finish();
+					Toast.makeText(this, "验证通过，注册成功", Toast.LENGTH_SHORT).show();
+				} else {
+					Toast.makeText(this, "验证码错误,注册失败", Toast.LENGTH_SHORT).show();
+				}
 			} else {
-				Toast.makeText(this, "验证码获取成功", Toast.LENGTH_SHORT).show();
+				Toast.makeText(this, "未完善信息，注册失败", Toast.LENGTH_SHORT).show();
 			}
 			break;
-		}
-	}
-
-	private void returnEnter() {
-		Intent intent = new Intent(this, EnterActivity.class);
-		startActivity(intent);
-		finish();
-	}
-
-	public void register() {
-		final String username = editTextP.getText().toString().trim();
-		final String password = editSMS.getText().toString().trim();
-		String confirm_password = editTextCT.getText().toString().trim();
-		if (TextUtils.isEmpty(username)) {
-			Toast.makeText(this, "手机号不能为空", Toast.LENGTH_SHORT).show();
-			editTextP.requestFocus();
-			return;
-		} else if (TextUtils.isEmpty(password)) {
-			Toast.makeText(this, "验证码不能为空", Toast.LENGTH_SHORT).show();
-			editSMS.requestFocus();
-			return;
-		} else if (TextUtils.isEmpty(confirm_password)) {
-			Toast.makeText(this, "密码不能为空", Toast.LENGTH_SHORT).show();
-			editTextCT.requestFocus();
-			return;
-		}
-		if (!TextUtils.isEmpty(username) && !TextUtils.isEmpty(password)) {
-			final ProgressDialog pd = new ProgressDialog(this);
-			pd.setMessage("正在注册......");
-			pd.show();
-
-			new Thread(new Runnable() {
-				public void run() {
-					try {
-						Thread.sleep(2000);
-					} catch (InterruptedException e) {
-
-					}
-					pd.dismiss();
-					Toast.makeText(RegisterActivity.this, "注册成功", Toast.LENGTH_SHORT).show();
-				}
-			}).start();
-
 		}
 	}
 }

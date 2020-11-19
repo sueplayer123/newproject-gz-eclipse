@@ -39,7 +39,7 @@ public class SplashActivity extends Activity {
 	}
 
 	private void skip() {
-		startActivity(new Intent(SplashActivity.this, EnterActivity.class));
+		startActivity(new Intent(SplashActivity.this, loginActivity.class));
 		finish();
 	}
 }
