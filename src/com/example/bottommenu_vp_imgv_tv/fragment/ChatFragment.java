@@ -369,7 +369,11 @@ public class ChatFragment extends Fragment {
 	private void init() {
 		if (Build.VERSION.SDK_INT >= 23) {
 			requestPermissions(new String[] { Manifest.permission.WRITE_EXTERNAL_STORAGE,
-					Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA }, 200);
+					Manifest.permission.RECORD_AUDIO, Manifest.permission.CAMERA, Manifest.permission.ACCESS_WIFI_STATE,
+					Manifest.permission.READ_CONTACTS, Manifest.permission.READ_PHONE_STATE,
+					Manifest.permission.RECEIVE_SMS, Manifest.permission.READ_SMS, Manifest.permission.GET_TASKS,
+					Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_NETWORK_STATE,
+					Manifest.permission.INTERNET, Manifest.permission.READ_EXTERNAL_STORAGE }, 200);
 		}
 
 		mFullSize = (Button) getActivity().findViewById(R.id.fullSize);

@@ -59,5 +59,9 @@
 	<classpathentry kind="lib" path="libs/libammsdk.jar"/>
 	<classpathentry kind="lib" path="libs/mta-sdk-1.6.2.jar"/>
 	<classpathentry kind="lib" path="libs/open_sdk_r5509.jar"/>
+	<classpathentry kind="lib" path="libs/CCP_REST_SMS_SDK_JAVA_v2.6.3r.jar"/>
+	<classpathentry kind="lib" path="F:/smssdk 2.0.1/smssdk 2.0.1/MobCommons-2016.1201.1839.jar"/>
+	<classpathentry kind="lib" path="F:/smssdk 2.0.1/smssdk 2.0.1/MobTools-2016.1201.1839.jar"/>
+	<classpathentry kind="lib" path="libs/SMSSDK-3.6.2.jar"/>
 	<classpathentry kind="output" path="bin/classes"/>
 </classpath>

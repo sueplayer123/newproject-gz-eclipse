@@ -28,10 +28,9 @@ public class loginActivity extends Activity implements View.OnClickListener {
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_login);
-
 		initView();
-
 		mDBOpenHelper = new DBOpenHelper(this);
+
 	}
 
 	private void initView() {
@@ -44,6 +43,7 @@ public class loginActivity extends Activity implements View.OnClickListener {
 
 		mBtLoginactivityLogin.setOnClickListener(this);
 		mTvLoginactivityRegister.setOnClickListener(this);
+
 	}
 
 	public void onClick(View view) {
