@@ -136,7 +136,7 @@ public final class R {
         public static final int welcome_image=0x7f020069;
     }
     public static final class id {
-        public static final int account=0x7f0b0054;
+        public static final int account=0x7f0b0058;
         public static final int bt_loginactivity_login=0x7f0b000a;
         public static final int bt_registeractivity_register=0x7f0b002c;
         public static final int btn1=0x7f0b001b;
@@ -164,7 +164,7 @@ public final class R {
         public static final int et_registeractivity_phoneCodes=0x7f0b002a;
         public static final int et_registeractivity_username=0x7f0b0024;
         public static final int et_wechat_id=0x7f0b0044;
-        public static final int exit=0x7f0b0052;
+        public static final int exit=0x7f0b0056;
         public static final int fullSize=0x7f0b003f;
         public static final int imageView=0x7f0b0042;
         public static final int imageView1=0x7f0b0035;
@@ -190,7 +190,7 @@ public final class R {
         public static final int rl_registeractivity_bottom=0x7f0b002d;
         public static final int rl_registeractivity_top=0x7f0b001f;
         public static final int save=0x7f0b0031;
-        public static final int set=0x7f0b0053;
+        public static final int set=0x7f0b0057;
         public static final int share_text=0x7f0b0048;
         public static final int show=0x7f0b0032;
         public static final int tabhost=0x7f0b0033;
@@ -200,6 +200,10 @@ public final class R {
         public static final int textView1=0x7f0b0000;
         public static final int textView2=0x7f0b0051;
         public static final int textView3=0x7f0b0037;
+        public static final int textView4=0x7f0b0052;
+        public static final int textView5=0x7f0b0053;
+        public static final int textView6=0x7f0b0054;
+        public static final int textView7=0x7f0b0055;
         public static final int tv_bottomMenu_addressbook=0x7f0b0012;
         public static final int tv_bottomMenu_chat=0x7f0b000f;
         public static final int tv_bottomMenu_discovery=0x7f0b0015;
